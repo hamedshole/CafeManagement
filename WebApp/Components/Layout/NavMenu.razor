@@ -1,0 +1,30 @@
+﻿
+<MudNavMenu>
+    <MudNavLink Href="neworder" title="ثبت سفارش جدید" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.NewLabel">ثبت سفارش</MudNavLink>
+
+    <MudNavLink Href="" title="داشبورد مدیریت" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">پیشخوان</MudNavLink>
+    <MudNavGroup HideExpandIcon=!IsOpen Title="رستوران" Icon="@Icons.Material.Filled.Restaurant">
+        <MudNavLink title="منوی رستوران" Href="menuorders" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.RestaurantMenu">منو </MudNavLink>
+
+        <MudNavLink title="میزهای رستوران" Href="tables" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.TableRestaurant">میزها </MudNavLink>
+        <MudNavLink title="افزودنی محصولات" Href="additives" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Tag">افزودنی ها</MudNavLink>
+        <MudNavLink title="دسته بندی مربوط به محصولات" Href="categories" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Category">دسته بندی محصولات</MudNavLink>
+        <MudNavLink title="محصولات کافه" Href="products" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.FoodBank"> محصولات</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup HideExpandIcon=!IsOpen Title="انبار" Icon="@Icons.Material.Filled.Inventory">
+        <MudNavLink title="واحدها" Href="units" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AcUnit">واحدها </MudNavLink>
+        <MudNavLink title="مواد اولیه انبار" Href="materials" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Inventory2">مواد اولیه </MudNavLink>
+        <MudNavLink title="افزودنی محصولات" Href="additives" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Tag">افزودنی ها</MudNavLink>
+        <MudNavLink title="دسته بندی مربوط به محصولات" Href="categories" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Category">دسته بندی محصولات</MudNavLink>
+        <MudNavLink title="محصولات کافه" Href="products" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.FoodBank"> محصولات</MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>
+    <MudNavLink Href="auth" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Auth Required</MudNavLink>
+
+
+
+</MudNavMenu>
+@code{
+    [Parameter]
+    public bool IsOpen { get; set; }
+}

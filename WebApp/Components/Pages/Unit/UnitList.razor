@@ -1,0 +1,72 @@
+﻿@using Shared.Model
+@using Shared.RestClient.Interfaces
+@using WebApp.Components.Layout
+@page "/units"
+@layout AdminLayout
+@inject IRestUnit _restUnit
+<MudDrawer Width="100%" Anchor="Anchor.Top" Fixed=false Variant="DrawerVariant.Temporary" ClipMode="DrawerClipMode.Never" @bind-Open=_detailPanel>
+    <MudDrawerContainer>
+        <UnitDetail CloseAction="OpenDetail" @ref=_panel></UnitDetail>
+    </MudDrawerContainer>
+</MudDrawer>
+<MudPaper Style="margin:10px">
+    <MudGrid Spacing="6">
+        <MudItem xs="6">
+            <MudIconButton OnClick=OpenDetail Icon="@Icons.Material.Filled.Add" Title="جدید">افزودن</MudIconButton>
+        </MudItem>
+
+    </MudGrid>
+</MudPaper>
+<MudPaper Style="margin:10px" Elevation="2">
+    <MudDataGrid @ref="_dataGrid" Striped=true ServerData=LoadData T="UnitModel">
+
+        <Columns>
+
+            <PropertyColumn Title="عنوان" Property="x=>x.Title"></PropertyColumn>
+            <PropertyColumn Title="واحد اصلی" Property="x=>x.Parent"></PropertyColumn>
+            <PropertyColumn Title="مقیاس" Property="x=>x.Relation"></PropertyColumn>
+            <TemplateColumn Title="وضعیت">
+                <CellTemplate>
+                    <MudStack Row>
+                        <MudCheckBox ReadOnly=true UnCheckedColor=Color.Error Color=Color.Success Value="context.Item.IsActive"></MudCheckBox>
+                    </MudStack>
+                </CellTemplate>
+            </TemplateColumn>
+            <TemplateColumn CellClass="d-flex justify-end">
+                <CellTemplate>
+                    <MudStack Row>
+                        <MudIconButton OnClick="()=>_panel.Update(context.Item.Id,OpenDetail)" Icon="@Icons.Material.Filled.Edit" />
+                        <MudIconButton OnClick="()=>Delete(context.Item.Id)" Icon="@Icons.Material.Filled.Delete" />
+                    </MudStack>
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+        <PagerContent>
+            <MudDataGridPager></MudDataGridPager>
+        </PagerContent>
+    </MudDataGrid>
+</MudPaper>
+
+@code {
+    private MudDataGrid<UnitModel> _dataGrid;
+    private int rowNumber;
+    private bool _detailPanel = false;
+    private void OpenDetail()
+    {
+        _detailPanel = !_detailPanel;
+        if (!_detailPanel)
+            _dataGrid.ReloadServerData();
+        StateHasChanged();
+    }
+
+    private string IsActiveString(bool isActive)
+    {
+        if (isActive)
+            return "فعال";
+        else
+            return "غیرفعال";
+    }
+
+
+
+}

@@ -1,0 +1,41 @@
+﻿@inherits LayoutComponentBase
+
+<MudRTLProvider RightToLeft=true>
+    <MudThemeProvider  />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" Edge="Edge.End" OnClick="NotificationToggle" />
+        </MudAppBar>
+        <MudDrawer @bind-Open="_drawerOpen" Variant=DrawerVariant.Mini ClipMode="DrawerClipMode.Always" Elevation="2">
+           <NavMenu IsOpen=_drawerOpen/>
+        </MudDrawer>
+        <MudDrawer Width="90%" Anchor="Anchor.Left" @bind-Open="_notificationOpen" Variant=DrawerVariant.Temporary ClipMode="DrawerClipMode.Never"  Elevation="2">
+            
+        </MudDrawer>
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+    </MudLayout>
+</MudRTLProvider>
+
+
+@code {
+    bool _drawerOpen = false;
+    bool _notificationOpen = false;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+    void NotificationToggle()
+    {
+        _notificationOpen = !_notificationOpen;
+    }
+   
+}
