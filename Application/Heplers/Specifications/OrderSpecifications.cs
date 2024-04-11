@@ -22,8 +22,8 @@ namespace Application.Helpers.Specifications
         }
         public OrderSpecifications AddIncludes()
         {
-            AddInclude(x => x.Table);
-            AddInclude(x => x.Customer);
+            AddInclude(nameof(OrderEntity.Table));
+            AddInclude(nameof(OrderEntity.Customer));
 
             return this;
         }

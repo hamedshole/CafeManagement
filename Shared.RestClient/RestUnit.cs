@@ -24,5 +24,6 @@ namespace Shared.RestClient
 
         IAdditiveClient IRestUnit.Additive => _additiveClient ?? new AdditiveClient(httpClient, "additives", notification);
         IUnitClient IRestUnit.Unit => _unitClient ?? new UnitClient(httpClient, "units", notification);
+        INotification IRestUnit.Notification => notification;
     }
 }

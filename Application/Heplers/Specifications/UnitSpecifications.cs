@@ -15,7 +15,7 @@ namespace Application.Helpers.Specifications
         }
         public UnitSpecifications AddIncludes()
         {
-            AddInclude(x => x.Parent);
+            AddInclude(nameof(UnitEntity.Parent));
             return this;
         }
     }

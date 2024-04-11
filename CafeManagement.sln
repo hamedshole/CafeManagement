@@ -3,27 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{077698D6-F325-43D4-9C32-6D5F87283C33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{077698D6-F325-43D4-9C32-6D5F87283C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{7721DC61-0D5F-4443-BF29-D6A771F30CD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{7721DC61-0D5F-4443-BF29-D6A771F30CD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{71FEC0EE-7171-4339-8A74-DE2ECAB57AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{71FEC0EE-7171-4339-8A74-DE2ECAB57AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{87C2892D-87DA-489E-8F01-050CAB2FAAD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{87C2892D-87DA-489E-8F01-050CAB2FAAD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrator", "Migrator\Migrator.csproj", "{3E2C72E5-D3EA-41E6-A1AE-93BF44BAB78E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migrator", "Migrator\Migrator.csproj", "{3E2C72E5-D3EA-41E6-A1AE-93BF44BAB78E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{33B97CE9-0B6B-4AFF-95A9-C0B74CF198C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{665C0739-BE44-4A78-8AE1-DF7AA765781E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTests", "ApiTests\ApiTests.csproj", "{4D874E12-E413-4240-AB64-1D9BA85D314B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTests", "ApiTests\ApiTests.csproj", "{4D874E12-E413-4240-AB64-1D9BA85D314B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FF4ACB78-B3BA-48B9-A513-8C9F0F831535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Model", "Shared.Model\Shared.Model.csproj", "{DBE164FC-4837-4B4B-B6BB-D9040BEFCB2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Model", "Shared.Model\Shared.Model.csproj", "{DBE164FC-4837-4B4B-B6BB-D9040BEFCB2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.RestClient", "Shared.RestClient\Shared.RestClient.csproj", "{A34500F9-DAFA-41FB-A22E-C52E430236D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.RestClient", "Shared.RestClient\Shared.RestClient.csproj", "{A34500F9-DAFA-41FB-A22E-C52E430236D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

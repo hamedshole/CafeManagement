@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Interfaces;
 using Infrastructure.Contexts;
@@ -95,6 +96,7 @@ namespace Infrastructure.Repositories
 
         }
 
+
         async Task IRepository<TEntity>.UpdateAsync(TEntity entity)
         {
             try
@@ -145,9 +147,9 @@ namespace Infrastructure.Repositories
             return expr;
         }
 
-        public Func<TEntity, T> Test<T>(Func<TEntity, T> f)
+        async Task IRepository<TEntity>.ExecuteDeleteAsync(Expression<Func<TEntity, bool>> expression)
         {
-            return f;
+            await _dbSet.Where(expression).ExecuteDeleteAsync();
         }
 
         async Task IRepository<TEntity>.ExecuteUpdateAsync(Expression<Func<TEntity, bool>> expression, params (string, object?)[] parameter)

@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Shared.Model;
+using System.Linq.Expressions;
 
 namespace Application.Helpers.Specifications
 {
@@ -18,19 +19,24 @@ namespace Application.Helpers.Specifications
                 SetFilterCondition(x => x.IsActive == parameter.IsActive);
             return this;
         }
+        public ProductSpecifications AddFilter(Expression<Func<ProductEntity,bool>> expression)
+        {
+            base.SetFilterCondition(expression);
+            return this;
+        }
         public ProductSpecifications IncludeCategory()
         {
-            AddInclude(x => x.Category);
+            AddInclude(nameof(ProductEntity.Category));
             return this;
         }
         public ProductSpecifications IncludeMaterials()
         {
-            AddInclude(x =>  x.Materials);
+            AddInclude("Materials.Material.Unit");
             return this;
         }
         public ProductSpecifications IncludeAdditives()
         {
-            AddInclude(x => x.Additives);
+            AddInclude("Additives.Additive");
             return this;
         }
     }

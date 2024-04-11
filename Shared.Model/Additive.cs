@@ -9,6 +9,21 @@
         public string Price { get; set; }
         public bool IsActive { get; set; }
     }
+    public class AdditiveSelectModel
+    {
+        public AdditiveSelectModel()
+        {
+            
+        }
+        public AdditiveSelectModel(int id, string title)
+        {
+            Id = id;
+            Title = title;
+        }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
     public class AdditiveDetailModel
     {
         public int Id { get; set; }

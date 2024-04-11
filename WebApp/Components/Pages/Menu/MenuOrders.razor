@@ -5,111 +5,223 @@
 @inject IRestUnit _restUnit
 <div class="d-flex flex-column mud-width-full mud-height-full">
     <MudToolBar Class="gap-4">
-        <MudButton OnClick="SaveData" Variant="Variant.Filled" Color="Color.Primary">ذخیره</MudButton>
-    </MudToolBar>
+        <MudButton OnClick="SaveCategoryData" Variant="Variant.Filled" Color="Color.Primary">ذخیره لیست دسته بندی</MudButton>
+        <MudSpacer></MudSpacer>
+        <MudButton OnClick="SaveProductData" Variant="Variant.Filled" Color="Color.Primary">ذخیره لیست محصولات</MudButton>
 
-    <MudDropContainer ItemPicked="Picked" T="DropItem" Items="@_dropzoneItems" @ref="_container" ItemsSelector="@((item,dropzone) => item.Selector == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
-        <ChildContent>
-            @for (int i = 1; i < 3; i++)
-            {
-                var dropzone = i.ToString();
+    </MudToolBar>
+    <MudStack Row>
+
+    <MudItem xs="6">
+        <MudDropContainer ItemPicked="CategoryPicked" T="DropCategoryItem" Items="@_dropzoneCategories" @ref="_Categorycontainer" ItemsSelector="@((item,dropzone) => item.Selector == dropzone)" ItemDropped="CategoryUpdated" Class="d-flex flex-wrap flex-grow-1">
+            <ChildContent>
+
                 <MudPaper Class="ma-4 flex-grow-1">
                     <MudList Clickable="true" Class="d-flex flex-column mud-height-full">
-                        <MudListSubheader>Drop Zone @dropzone</MudListSubheader>
-                        <MudDropZone T="DropItem" Identifier="@dropzone" Class="flex-grow-1" AllowReorder="true" />
+                        <MudListSubheader>دسته بندی ها</MudListSubheader>
+                        <MudDropZone T="DropCategoryItem" Identifier="1" Class="flex-grow-1" AllowReorder="true" />
                     </MudList>
                 </MudPaper>
-            }
-        </ChildContent>
-        <ItemRenderer>
-            <MudListItem>
-                <MudStack Row>
-                    <MudAvatar>
-                        <MudImage Src=@string.Format("{0},{1}","data:image/png;base64",context.Image)></MudImage>
-                    </MudAvatar>
-                    <MudText>@string.Format("{0} ({1})", context.Title, context.Order)</MudText>
-                </MudStack>
-            </MudListItem>
-        </ItemRenderer>
-    </MudDropContainer>
+
+            </ChildContent>
+            <ItemRenderer>
+                <MudListItem OnClick="()=>LoadProductsData(context.Id)">
+                    <MudStack Row>
+                        <MudAvatar>
+                            <MudImage Src=@string.Format("{0},{1}","data:image/png;base64",context.Image)></MudImage>
+                        </MudAvatar>
+                        <MudText>@string.Format("{0} ({1})", context.Title, context.Order)</MudText>
+                    </MudStack>
+                </MudListItem>
+            </ItemRenderer>
+        </MudDropContainer>
+
+    </MudItem>
+    <MudItem xs="6">
+        <MudDropContainer ItemPicked="ProductPicked" T="DropProductItem" Items="@_dropzoneProducts" @ref="_Productcontainer" ItemsSelector="@((item,dropzone) => item.Selector == dropzone)" ItemDropped="ProductUpdated" Class="d-flex flex-wrap flex-grow-1">
+            <ChildContent>
+
+                <MudPaper Class="ma-4 flex-grow-1">
+                    <MudList Clickable="true" Class="d-flex flex-column mud-height-full">
+                        <MudListSubheader>محصولات دسته بندی</MudListSubheader>
+                        <MudDropZone T="DropProductItem" Identifier="1" Class="flex-grow-1" AllowReorder="true" />
+                    </MudList>
+                </MudPaper>
+
+
+            </ChildContent>
+            <ItemRenderer>
+                <MudListItem OnClick="()=>_restUnit.Notification.Error(context.Order.ToString())">
+                    <MudStack Row>
+                        <MudAvatar>
+                            <MudImage Src=@string.Format("{0},{1}","data:image/png;base64",context.Image)></MudImage>
+                        </MudAvatar>
+                        <MudText>@string.Format("{0} ({1})", context.Title, context.Order)</MudText>
+                    </MudStack>
+                </MudListItem>
+            </ItemRenderer>
+        </MudDropContainer>
+
+    </MudItem>
+    </MudStack>
+
 </div>
 @code {
-    private MudDropContainer<DropItem> _container;
+    private MudDropContainer<DropCategoryItem> _Categorycontainer;
+    private MudDropContainer<DropProductItem> _Productcontainer;
 
-    private void Picked(MudDragAndDropItemTransaction<DropItem> f)
+
+
+    int _productPrevIndex = 0;
+    int _categoryPrevIndex = 0;
+
+
+    protected override async Task OnInitializedAsync()
     {
-        prevIndex = f.Index;
+        await LoadCategoriesData();
     }
-    int prevIndex = 0;
-    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+
+    private void CategoryUpdated(MudItemDropInfo<DropCategoryItem> dropItem)
     {
+        int nowindex = dropItem.IndexInZone;
         dropItem.Item.Selector = dropItem.DropzoneIdentifier;
 
         var indexOffset = dropItem.DropzoneIdentifier switch
         {
-            "2" => _dropzoneItems.Count(x => x.Selector == "1"),
+            "2" => _dropzoneCategories.Count(x => x.Selector == "1"),
             _ => 0
         };
-        if (prevIndex < dropItem.IndexInZone)
+        if (_categoryPrevIndex < nowindex)
         {
-            foreach (var item in _dropzoneItems)
+            foreach (var item in _dropzoneCategories)
             {
-                
+                if (item.Order > _categoryPrevIndex && item.Order <= nowindex)
+                    item.Order--;
             }
         }
-        else
+        if (_categoryPrevIndex > nowindex)
         {
-
-            for (int i = dropItem.IndexInZone; i < prevIndex; i++)
+            foreach (var item in _dropzoneCategories)
             {
-                _dropzoneItems.Find(x => x.Order == i).Order--;
+                if (item.Order >= nowindex && item.Order < _categoryPrevIndex)
+                    item.Order++;
             }
-
         }
-        _dropzoneItems.Find(x => x.Id == dropItem.Item.Id).Order = dropItem.IndexInZone;
+        _dropzoneCategories.Find(x => x.Id == dropItem.Item.Id).Order = nowindex;
+        _dropzoneCategories = _dropzoneCategories.OrderBy(x => x.Order).ToList();
+        RefreshCategoryContainer();
+
+    }
+    private void CategoryPicked(MudDragAndDropItemTransaction<DropCategoryItem> f)
+    {
+        _categoryPrevIndex = f.Index;
+    }
+    private void ProductPicked(MudDragAndDropItemTransaction<DropProductItem> f)
+    {
+        _productPrevIndex = f.Index;
+    }
+    private void ProductUpdated(MudItemDropInfo<DropProductItem> dropItem)
+    {
+        int nowindex = dropItem.IndexInZone;
+        dropItem.Item.Selector = dropItem.DropzoneIdentifier;
+
+        var indexOffset = dropItem.DropzoneIdentifier switch
+        {
+            "2" => _dropzoneProducts.Count(x => x.Selector == "1"),
+            _ => 0
+        };
+        if (_productPrevIndex < nowindex)
+        {
+            foreach (var item in _dropzoneProducts)
+            {
+                if (item.Order > _productPrevIndex && item.Order <= nowindex)
+                    item.Order--;
+            }
+        }
+        if (_productPrevIndex > nowindex)
+        {
+            foreach (var item in _dropzoneProducts)
+            {
+                if (item.Order >= nowindex && item.Order < _productPrevIndex)
+                    item.Order++;
+            }
+        }
+        _dropzoneProducts.Find(x => x.Id == dropItem.Item.Id).Order = nowindex;
+        _dropzoneProducts = _dropzoneProducts.OrderBy(x => x.Order).ToList();
+        RefreshProductContainer();
 
     }
 
-    private List<DropItem> _dropzoneItems = new();
+    private List<DropCategoryItem> _dropzoneCategories = new();
+    private List<DropProductItem> _dropzoneProducts = new();
 
 
 
-    private void RefreshContainer()
+
+    private void RefreshCategoryContainer()
     {
         //update the binding to the container
         StateHasChanged();
 
         //the container refreshes the internal state
-        _container.Refresh();
+        _Categorycontainer.Refresh();
     }
-
-    private async Task LoadServerData()
+    private void RefreshProductContainer()
     {
-        _dropzoneItems = await LoadProductCategories();
-        RefreshContainer();
+        //update the binding to the container
+        StateHasChanged();
+
+        //the container refreshes the internal state
+        _Productcontainer.Refresh();
     }
 
-    private async Task<List<DropItem>> LoadProductCategories()
+    private async Task LoadCategoriesData()
+    {
+        _dropzoneCategories = await LoadCategories();
+        RefreshCategoryContainer();
+    }
+    private async Task LoadProductsData(int id)
+    {
+        _dropzoneProducts = await LoadProducts(id);
+        RefreshProductContainer();
+    }
+
+    private async Task<List<DropCategoryItem>> LoadCategories()
     {
         var res = await _restUnit.Category.GetPagedList<ProductCategoryModel>("?Page=1&PageSize=50");
-        return res.Items.OrderBy(x => x.Order).Select(x => new DropItem { Id = x.Id, Title = x.Title, Image = x.Image, Order = x.Order, Selector = "1" }).ToList();
+        return res.Items.OrderBy(x => x.Order).Select(x => new DropCategoryItem { Id = x.Id, Title = x.Title, Image = x.Image, Order = x.Order, Selector = "1" }).ToList();
     }
-    protected override async Task OnInitializedAsync()
+    private async Task<List<DropProductItem>> LoadProducts(int id)
     {
-        await LoadServerData();
+        var res = await _restUnit.Category.GetProducts(id);
+        return res.OrderBy(x => x.Order).Select(x => new DropProductItem { Id = x.Id, Title = x.Title, Image = x.Image, Order = x.Order, Selector = "1" }).ToList();
     }
-    private async Task SaveData()
+
+    private async Task SaveCategoryData()
     {
         UpdateCategoryOrderParameterCollection parameters = new UpdateCategoryOrderParameterCollection
             {
-                Items = _dropzoneItems.Select(x => new UpdateCategoryOrderParameter { CategoryId = x.Id, Order = x.Order }).ToList()
+                Items = _dropzoneCategories.Select(x => new UpdateCategoryOrderParameter { CategoryId = x.Id, Order = x.Order }).ToList()
             };
         await _restUnit.Category.UpdateOrder(parameters);
+    }
+    private async Task SaveProductData()
+    {
+        UpdateProductsOrderCollection parameters = new UpdateProductsOrderCollection
+            {
+                Items = _dropzoneCategories.Select(x => new UpdateProductOrderParameter { ProductId = x.Id, Order = x.Order }).ToList()
+            };
+        await _restUnit.Product.UpdateOrder(parameters);
     }
 
 
     [DebuggerDisplay("id={Id},title={Title},order={Order}")]
-    public class DropItem : ProductCategoryModel
+    public class DropCategoryItem : ProductCategoryModel
+    {
+        public string Selector { get; set; }
+    }
+    [DebuggerDisplay("id={Id},title={Title},order={Order}")]
+    public class DropProductItem : ProductModel
     {
         public string Selector { get; set; }
     }

@@ -14,5 +14,11 @@ namespace Shared.RestClient.Repositories
 			else
 				_notification.Error(res.StatusCode.ToString());
 		}
+
+		public async Task<ICollection<ProductModel>> GetProducts(int id)
+		{
+			var res = await _httpClient.GetFromJsonAsync<ICollection<ProductModel>>($"api/{_controller}/{id}/products");
+			return res;
+		}
 	}
 }

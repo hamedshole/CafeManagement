@@ -16,7 +16,7 @@ namespace Application.Helpers.Specifications
         }
         public AdditiveSpecifications AddIncludes()
         {
-            AddInclude(x => x.Material);
+            AddInclude(nameof(AdditiveEntity.Material));
             return this;
         }
     }

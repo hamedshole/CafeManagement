@@ -8,6 +8,27 @@
         public string UnitPrice { get; set; }
         public bool IsActive { get; set; }
     }
+    public class MaterialSelectModel
+    {
+        public MaterialSelectModel()
+        {
+            
+        }
+        public MaterialSelectModel(int id, string title, string unit, long value)
+        {
+            Id = id;
+            Title = title;
+            Unit = unit;
+            Amount = value;
+        }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Unit { get; set; }
+        public long Amount { get; set; }
+
+
+    }
     public class MaterialDetailModel
     {
         public int Id { get; set; }

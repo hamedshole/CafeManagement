@@ -9,5 +9,6 @@
         IInventoryClient Inventory { get; }
         IAdditiveClient Additive { get; }
         IUnitClient Unit { get; }
+        INotification Notification { get; }
     }
 }

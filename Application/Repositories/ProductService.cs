@@ -10,7 +10,7 @@ using Shared.Model;
 
 namespace Application.Repositories
 {
-    internal class ProductService(IRepository<ProductEntity> repository, IMapper mapper) : BaseService<ProductEntity, ProductModel>(repository, mapper), IProductService
+    internal class ProductService(IRepository<ProductEntity> repository, IMapper mapper) : BaseService<ProductEntity, ProductModel, ProductDetailModel>(repository, mapper), IProductService
     {
         public override async Task CreateAsync<TParameter>(TParameter parameter)
         {
@@ -35,7 +35,7 @@ namespace Application.Repositories
         }
         private async Task SetPrice(ProductEntity productEntity)
         {
-           await _repository.DataUnit.ProductPriceLogs.CreateAsync(new ProductPriceLogEntity(productEntity, productEntity.Price.Value));
+            await _repository.DataUnit.ProductPriceLogs.CreateAsync(new ProductPriceLogEntity(productEntity, productEntity.Price.Value));
         }
         public async Task<ICollection<PriceLogModel>> ProductPriceLogs(int id, DatePeriodParameter date)
         {
@@ -49,14 +49,44 @@ namespace Application.Repositories
 
         public override async Task UpdateAsync<TParameter>(TParameter parameter)
         {
-            if (parameter is UpdateProductParameter updateProductParameter)
+            try
             {
-                ProductEntity product = await _repository.GetByIdAsync(updateProductParameter.Id);
-                if (product.Price.Value != updateProductParameter.Price)
-                    await UpdatePrice(new UpdateProductPriceParameter(product.Id, updateProductParameter.Price));
+                if (parameter is UpdateProductParameter updateProductParameter)
+                {
+                    ProductEntity entity = _mapper.Map<ProductEntity>(parameter);
+                    if (updateProductParameter.Materials is ICollection<CreateProductMaterialParameter> m)
+                    {
+                        await _repository.DataUnit.ProductMaterials.ExecuteDeleteAsync(x => x.ProductId == entity.Id);
+                        var materials = updateProductParameter.Materials.Select(x => new ProductMaterialEntity(entity.Id, x.MaterialId, x.Amount)).ToList();
+                        await _repository.DataUnit.ProductMaterials.CreateRangeAsync(materials);
 
+                    }
+                    if (updateProductParameter.Additives is ICollection<int> a)
+                    {
+                        await _repository.DataUnit.ProductAdditives.ExecuteDeleteAsync(x => x.ProductId == entity.Id);
+                        var additives = updateProductParameter.Additives.Select(x => new ProductAdditiveEntity(entity.Id, x)).ToList();
+                        await _repository.DataUnit.ProductAdditives.CreateRangeAsync(additives);
+                    }
+
+
+                    ProductEntity product = await _repository.GetByIdAsync(updateProductParameter.Id);
+                    if (product.Price.Value != updateProductParameter.Price)
+                        await UpdatePrice(new UpdateProductPriceParameter(product.Id, updateProductParameter.Price));
+
+                    await _repository.DataUnit.SaveChangesAsync();
+
+                    await _repository.UpdateAsync(entity);
+                    await _repository.DataUnit.SaveChangesAsync();
+
+                }
             }
-            await base.UpdateAsync(parameter);
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            
+
         }
 
         public async Task UpdatePrice(UpdateProductPriceParameter parameter)
@@ -72,9 +102,17 @@ namespace Application.Repositories
                 ppl.PriceEnded();
                 await _repository.DataUnit.ProductPriceLogs.UpdateAsync(ppl);
             }
-            await _repository.ExecuteUpdateAsync(x=>x.Id==parameter.GetId(),(nameof(ProductEntity.Price),new Money(parameter.Price)));
-            await _repository.DataUnit.SaveChangesAsync();
+            await _repository.ExecuteUpdateAsync(x => x.Id == parameter.GetId(), (nameof(ProductEntity.Price), new Money(parameter.Price)));
 
+        }
+
+        public async Task UpdateOrder(UpdateProductsOrderCollection parameters)
+        {
+            foreach (var item in parameters.Items)
+            {
+                await _repository.ExecuteUpdateAsync(x => x.Id == item.ProductId, (nameof(ProductEntity.Order), item.Order));
+            }
+            await _repository.DataUnit.SaveChangesAsync();
         }
 
 

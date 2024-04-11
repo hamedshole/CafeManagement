@@ -41,7 +41,7 @@ namespace Application.Services
 
         public virtual TDetailedDto GetBy(ISpecifications<TEntity> specifications)
         {
-            TEntity? entity = _repository.Get(specifications).FirstOrDefault() ?? throw new Exception();
+            TEntity? entity = _repository.Get(specifications).FirstOrDefault();
             return _mapper.Map<TEntity, TDetailedDto>(entity);
         }
 

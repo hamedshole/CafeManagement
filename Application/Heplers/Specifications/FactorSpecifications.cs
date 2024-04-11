@@ -17,7 +17,7 @@ namespace Application.Helpers.Specifications
         }
         public FactorSpecifications AddIncludes()
         {
-            AddInclude(x => x.Items);
+            AddInclude(nameof(InventoryFactorEntity.Items));
             return this;
         }
     }

@@ -6,7 +6,7 @@ namespace Application.Helpers.Specifications
 {
      public class BaseSpecification<TEntity>:ISpecifications<TEntity> where TEntity : EntityBase
     {
-        private readonly List<Expression<Func<TEntity, object>>>? _includeCollection;
+        private readonly List<string>? _includeCollection;
 
 
 
@@ -19,7 +19,7 @@ namespace Application.Helpers.Specifications
         public List<Expression<Func<TEntity, bool>>> FilterCondition { get; private set; }
         public Expression<Func<TEntity, object>>? OrderBy { get; private set; }
         public Expression<Func<TEntity, object>>? OrderByDescending { get; private set; }
-        public List<Expression<Func<TEntity, object>>> Includes
+        public List<string> Includes
         {
             get
             {
@@ -29,7 +29,7 @@ namespace Application.Helpers.Specifications
 
         public Expression<Func<TEntity, object>>? GroupBy { get; private set; }
 
-        private protected void AddInclude(Expression<Func<TEntity, object>> includeExpression)
+        private protected void AddInclude(string includeExpression)
         {
             Includes.Add(includeExpression);
         }

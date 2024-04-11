@@ -16,5 +16,6 @@ namespace Domain.Interfaces
         Task<TEntity> GetByIdAsync(int id);
         IQueryable<TEntity> Get(ISpecifications<TEntity> specifications);
         IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> expression);
+        Task ExecuteDeleteAsync(Expression<Func<TEntity, bool>> expression);
     }
 }

@@ -30,8 +30,23 @@ namespace ApiServer.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var res = await _service.GetById(id);
-            return Ok(res);
+            try
+            {
+
+            ProductSpecifications productSpecifications = new();
+            productSpecifications
+                .IncludeCategory()
+                .IncludeMaterials()
+                .IncludeAdditives()
+                .AddFilter(x=>x.Id==id);
+            var res =  _service.GetBy(productSpecifications);
+            return Ok(await Task.FromResult(res));
+            }
+            catch (Exception r)
+            {
+
+                throw;
+            }
         }
 
         // POST api/<ProductsController>
@@ -65,7 +80,7 @@ namespace ApiServer.Controllers
 
             try
             {
-                await _service.UpdatePrice(new UpdateProductPriceParameter(id,parameter.Price));
+                await _service.UpdatePrice(new UpdateProductPriceParameter(id, parameter.Price));
                 return Ok();
             }
             catch (Exception)
@@ -75,10 +90,10 @@ namespace ApiServer.Controllers
             }
         }
 
-       
+
 
         [HttpGet("{id}/prices", Name = "GetProductPriceLogs")]
-        public async Task<IActionResult> UpdateProductPrice(int id, [FromQuery] DatePeriodParameter parameter)
+        public async Task<IActionResult> GetProductPriceLogs(int id, [FromQuery] DatePeriodParameter parameter)
         {
             try
             {
@@ -90,6 +105,13 @@ namespace ApiServer.Controllers
 
                 throw;
             }
+        }
+
+        [HttpPatch("orders")]
+        public async Task<IActionResult> UpdateOrders([FromBody] UpdateProductsOrderCollection parameter)
+        {
+            await _service.UpdateOrder(parameter);
+            return Ok();
         }
 
         // DELETE api/<ProductsController>/5

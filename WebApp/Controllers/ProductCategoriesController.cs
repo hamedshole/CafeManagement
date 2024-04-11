@@ -83,5 +83,20 @@ namespace ApiServer.Controllers
             await _service.DeleteAsync(id);
             return Ok();
         }
+
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> GetProducts(int id)
+        {
+            try
+            {
+                var res=await _service.GetProducts(id);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
     }
 }

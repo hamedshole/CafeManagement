@@ -14,7 +14,7 @@ namespace Domain.Interfaces
         Expression<Func<T, object>> OrderByDescending { get; }
 
         // Include collection to load related data
-        List<Expression<Func<T, object>>> Includes { get; }
+        List<string> Includes { get; }
 
         // GroupBy expression
         Expression<Func<T, object>> GroupBy { get; }

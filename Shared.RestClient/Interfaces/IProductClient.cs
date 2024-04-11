@@ -1,6 +1,10 @@
-﻿namespace Shared.RestClient.Interfaces
+﻿using Shared.Model;
+
+namespace Shared.RestClient.Interfaces
 {
-    public interface IProductClient
+    public interface IProductClient:IBaseClient
     {
+        Task UpdateOrder(UpdateProductsOrderCollection parameters);
+
     }
 }
