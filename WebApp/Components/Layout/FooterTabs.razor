@@ -1,0 +1,47 @@
+﻿@rendermode InteractiveServer
+@inject IJSRuntime _js
+<div class="wrapper">
+    <div class="navbar-footer">
+        <ul class="nav nav-pills  nav-tabs-menu" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-comment-tab" data-bs-toggle="pill" data-bs-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment" aria-selected="false" onclick="CommentBtn()" tabindex="-1">
+                    <i class="ayha-comment-icon"></i>
+                    <p>دیدگاه</p>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-chat-tab" data-bs-toggle="pill" data-bs-target="#pills-chat" type="button" role="tab" aria-controls="pills-chat" aria-selected="false" tabindex="-1">
+                    <i class="ayha-chat-icon"></i>
+                    <p>بازی</p>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link " id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" tabindex="-1" @onclick='(()=>Profile("pills-profile-tab"))'>
+                    <i class="ayha-profile-icon"></i>
+                    <p>پروفایل</p>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" @onclick='(()=>Menu("pills-home-tab"))'>
+                    <i class="ayha-menu-icon"></i>
+                    <p>منو</p>
+                </button>
+            </li>
+        </ul>
+        <div class="tooltip-alarm top">بعد از انتخاب زنگ را بزنید</div>
+        <form id="Sendalarm">
+            <input name="send" type="hidden" value="1">
+            <input id="table_id" name="table" type="hidden" value="">
+            <div class="circle">
+                <button id="button_alrm" type="button" onclick="ScanQr()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19.755" height="18.344" viewBox="0 0 19.755 18.344">
+                        <path d="M19.376,15.976c-.852-.916-2.446-2.293-2.446-6.8A6.964,6.964,0,0,0,11.288,2.33V1.411a1.41,1.41,0,1,0-2.821,0V2.33A6.963,6.963,0,0,0,2.826,9.172c0,4.511-1.594,5.888-2.446,6.8A1.376,1.376,0,0,0,0,16.933a1.413,1.413,0,0,0,1.415,1.411H18.34a1.412,1.412,0,0,0,1.415-1.411,1.376,1.376,0,0,0-.379-.957Zm-16.4.251c.936-1.234,1.959-3.277,1.964-7.03,0-.009,0-.017,0-.026a4.939,4.939,0,1,1,9.877,0c0,.009,0,.017,0,.026.005,3.753,1.028,5.8,1.964,7.03Z" transform="translate(-0.001)" fill="#fff" class="notification--bellClapper"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19.755" height="18.344" viewBox="0 0 19.755 18.344">
+                        <path d="M5.8,2.8A2.851,2.851,0,0,1,2.9,5.6,2.851,2.851,0,0,1,0,2.8C5.679,2.8.131,2.8,5.8,2.8Z" transform="translate(0 -2.8)" fill="#fff" class="notification--bell"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

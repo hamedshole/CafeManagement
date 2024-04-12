@@ -6,5 +6,6 @@ namespace Shared.RestClient.Interfaces
     {
         Task UpdateOrder(UpdateCategoryOrderParameterCollection parameters);
         Task<ICollection<ProductModel>> GetProducts(int id);
+        Task<ICollection<MenuCategoryModel>> GetMenu();
     }
 }

@@ -9,6 +9,7 @@ namespace Domain.Entities
         public string Image { get; set; }
         public bool IsActive { get; set; }
         public string? Description { get; set; }
+        public ICollection<ProductEntity>? Products { get; set; }
         public ProductCategoryEntity()
         {
             Title = string.Empty;

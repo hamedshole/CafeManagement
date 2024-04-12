@@ -20,5 +20,11 @@ namespace Shared.RestClient.Repositories
 			var res = await _httpClient.GetFromJsonAsync<ICollection<ProductModel>>($"api/{_controller}/{id}/products");
 			return res;
 		}
-	}
+
+        async Task<ICollection<MenuCategoryModel>> ICategoryClient.GetMenu()
+        {
+			var res = await _httpClient.GetFromJsonAsync<ICollection<MenuCategoryModel>>($"api/{_controller}/menu");
+			return res;
+		}
+    }
 }

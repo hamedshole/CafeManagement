@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.934" height="44.267" viewBox="0 0 32.934 44.267">
+  <g id="Group_260" data-name="Group 260" transform="translate(-76.999 -149.866)">
+    <path id="bell" d="M25,6a3.016,3.016,0,0,0-3,3v1.363c-4.828,1.188-8,5.25-8,10.7v7.8a12.872,12.872,0,0,1-2.02,5.863l-1.812,2.719A1,1,0,0,0,11,39H39a1,1,0,0,0,.832-1.555l-1.785-2.68A11.722,11.722,0,0,1,36,29V21.2c0-5.516-3.172-9.629-8-10.828V9A3.016,3.016,0,0,0,25,6Zm0,2a1,1,0,0,1,1,1v1.047c-.328-.027-.66-.047-1-.047s-.672.02-1,.047V9A1,1,0,0,1,25,8ZM20.422,41a4.993,4.993,0,0,0,9.156,0Z" transform="translate(67 147)" fill="red"/>
+    <line id="Line_115" data-name="Line 115" x2="26.601" y2="38" transform="translate(80.199 153)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4.5"/>
+    <line id="Line_116" data-name="Line 116" x2="26.601" y2="38" transform="translate(80.199 153)" fill="none" stroke="red" stroke-linecap="round" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="60.063" viewBox="0 0 64 60.063">
+  <g id="Printer" transform="translate(0 -1.969)">
+    <path id="Path_3997" data-name="Path 3997" d="M57.788,14.031H52.5V5.969a4,4,0,0,0-4-4h-33a4,4,0,0,0-4,4v8.063H6.212A6.22,6.22,0,0,0,0,20.243v26.27a6.22,6.22,0,0,0,6.212,6.212h2.38a1,1,0,0,0,0-2H6.212A4.217,4.217,0,0,1,2,46.514V20.243a4.217,4.217,0,0,1,4.212-4.212H57.788A4.217,4.217,0,0,1,62,20.243v26.27a4.217,4.217,0,0,1-4.212,4.212H56a1,1,0,0,0,0,2h1.788A6.22,6.22,0,0,0,64,46.514V20.243A6.22,6.22,0,0,0,57.788,14.031ZM13.5,5.969a2,2,0,0,1,2-2h33a2,2,0,0,1,2,2v8h-37Z" fill="#fff"/>
+    <path id="Path_3998" data-name="Path 3998" d="M44,45.032H20a1,1,0,1,0,0,2H44a1,1,0,0,0,0-2Z" fill="#fff"/>
+    <path id="Path_3999" data-name="Path 3999" d="M44,52.032H20a1,1,0,1,0,0,2H44a1,1,0,0,0,0-2Z" fill="#fff"/>
+    <circle id="Ellipse_133" data-name="Ellipse 133" cx="2" cy="2" r="2" transform="translate(5.959 19.841)" fill="#fff"/>
+    <circle id="Ellipse_134" data-name="Ellipse 134" cx="2" cy="2" r="2" transform="translate(12.286 19.841)" fill="#fff"/>
+    <circle id="Ellipse_135" data-name="Ellipse 135" cx="2" cy="2" r="2" transform="translate(18.612 19.841)" fill="#fff"/>
+    <path id="Path_4000" data-name="Path 4000" d="M11,62.031H53v-26H11Zm2.4-23.6H50.6V59.628H13.4Z" fill="#fff"/>
+  </g>
+</svg>

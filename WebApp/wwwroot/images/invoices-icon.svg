@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 147 147" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="a" x1="1.19" x2=".045" y1="-.18" y2=".968">
+<stop stop-color="#ff8d8d" offset="0"/>
+<stop stop-color="red" offset="1"/>
+</linearGradient>
+<filter id="c" x="0" y="0" width="147" height="147" filterUnits="userSpaceOnUse">
+<feOffset input="SourceAlpha"/>
+<feGaussianBlur result="blur" stdDeviation="5"/>
+<feFlood flood-color="#ff6e6e"/>
+<feComposite in2="blur" operator="in"/>
+<feComposite in="SourceGraphic"/>
+</filter>
+<filter id="b" x="0" y="0" width="147" height="147" filterUnits="userSpaceOnUse">
+<feOffset dy="-3" input="SourceAlpha"/>
+<feGaussianBlur result="blur-2" stdDeviation="3"/>
+<feFlood flood-opacity=".161" result="color"/>
+<feComposite in="SourceGraphic" in2="blur-2" operator="out"/>
+<feComposite in="color" operator="in"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+</defs>
+<g data-type="innerShadowGroup">
+<g filter="url(#c)">
+<rect transform="translate(15 15)" width="117" height="117" rx="18" fill="url(#a)" data-name="Rectangle 408"/>
+</g>
+<g filter="url(#b)">
+<rect transform="translate(15 15)" width="117" height="117" rx="18" fill="#fff" data-name="Rectangle 408"/>
+</g>
+</g>
+<g transform="translate(43.52 43.502)" fill="#fff">
+<path transform="translate(0 -169.5)" d="m59.913 213.89-3.142-18.749a3.739 3.739 0 0 0-3.7-3.12l-46.129-0.02a3.755 3.755 0 0 0-3.7 3.134l-3.142 18.755a8.713 8.713 0 0 0-0.1 1.23v10.628a3.727 3.727 0 0 0 3.644 3.75h52.5a3.65 3.65 0 0 0 3.644-3.75v-10.634a1.782 1.782 0 0 0 0.125-1.224zm-27.092-15.327a1.87 1.87 0 0 1 1.769-1.875h1.77a1.8 1.8 0 0 1 1.769 1.875v1.875a1.87 1.87 0 0 1-1.769 1.875h-1.769a1.8 1.8 0 0 1-1.769-1.875zm-3.75 7.5h1.769a1.8 1.8 0 0 1 1.769 1.875v1.875a1.87 1.87 0 0 1-1.769 1.875h-1.768a1.8 1.8 0 0 1-1.769-1.875v-1.875a1.744 1.744 0 0 1 1.769-1.876zm-7.5-7.5a1.87 1.87 0 0 1 1.769-1.875h1.769a1.8 1.8 0 0 1 1.769 1.875v1.875a1.87 1.87 0 0 1-1.769 1.875h-1.767a1.8 1.8 0 0 1-1.769-1.875zm-7.5 3.75h-1.771a1.8 1.8 0 0 1-1.769-1.875v-1.875a1.87 1.87 0 0 1 1.769-1.875h1.769a1.8 1.8 0 0 1 1.769 1.875v1.875a1.731 1.731 0 0 1-1.765 1.875zm1.875 7.5v-1.875a1.87 1.87 0 0 1 1.769-1.875h1.769a1.8 1.8 0 0 1 1.769 1.875v1.875a1.87 1.87 0 0 1-1.769 1.875h-1.767a1.87 1.87 0 0 1-1.769-1.876zm23.436 14.061h-18.747a1.793 1.793 0 0 1-1.769-1.873 1.862 1.862 0 0 1 1.769-1.875h18.643a1.793 1.793 0 0 1 1.769 1.875 1.6 1.6 0 0 1-1.664 1.872zm4.687-14.061a1.87 1.87 0 0 1-1.769 1.875h-1.768a1.8 1.8 0 0 1-1.769-1.875v-1.875a1.87 1.87 0 0 1 1.769-1.875h1.768a1.8 1.8 0 0 1 1.769 1.875zm5.625-9.374a1.87 1.87 0 0 1-1.769 1.875h-1.769a1.8 1.8 0 0 1-1.769-1.875v-1.875a1.87 1.87 0 0 1 1.769-1.875h1.769a1.8 1.8 0 0 1 1.769 1.875z" data-name="Path 346"/>
+<path transform="translate(-28.303)" d="M45.189,22.5l7.394.015v-7.5L63.823,15a1.8,1.8,0,0,0,1.769-1.875V1.875A1.87,1.87,0,0,0,63.823,0H33.935A1.888,1.888,0,0,0,32.06,1.875V13.117a1.87,1.87,0,0,0,1.769,1.875L45.189,15Zm-7.5-13.124V5.625H60.084v3.75Z" opacity=".822" data-name="Path 347"/>
+</g>
+</svg>

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Helpers.Specifications;
+using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
@@ -23,6 +24,24 @@ namespace Application.Services
             return await Task.FromResult(_repository.DataUnit.Products.Get(x => x.CategoryId == id).ProjectTo<ProductModel>(_mapper.ConfigurationProvider).ToList());
         }
 
+        async Task<ICollection<MenuCategoryModel>> IProductCategoryService.GetMenu()
+        {
+            try
+            {
+
+            ProductCategorySpecifications productCategorySpecifications =new ProductCategorySpecifications();
+            productCategorySpecifications
+                .AddFilter(x=>x.IsActive)
+                .IncludeProduct();
+            var res= _repository.Get(productCategorySpecifications).OrderBy(x=>x.Order).ProjectTo<MenuCategoryModel>(_mapper.ConfigurationProvider).ToList();
+            return await Task.FromResult(res);
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

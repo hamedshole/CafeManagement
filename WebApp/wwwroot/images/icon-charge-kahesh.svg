@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="87" height="87" viewBox="0 0 87 87">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.19" y1="-0.18" x2="0.045" y2="0.968" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8d8d"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+    <filter id="Rectangle_915" x="0" y="0" width="87" height="87" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#ff6e6e"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_915-2" x="0" y="0" width="87" height="87" filterUnits="userSpaceOnUse">
+      <feOffset dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_72" data-name="Group 72" transform="translate(14997.424 -9832.129)">
+    <g data-type="innerShadowGroup">
+      <g transform="matrix(1, 0, 0, 1, -14997.42, 9832.13)" filter="url(#Rectangle_915)">
+        <rect id="Rectangle_915-3" data-name="Rectangle 915" width="57" height="57" rx="12" transform="translate(15 15)" fill="url(#linear-gradient)"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -14997.42, 9832.13)" filter="url(#Rectangle_915-2)">
+        <rect id="Rectangle_915-4" data-name="Rectangle 915" width="57" height="57" rx="12" transform="translate(15 15)" fill="#fff"/>
+      </g>
+    </g>
+    <path id="stockup" d="M30.4,0H4.354A4.184,4.184,0,0,0,1.285,1.272,4.174,4.174,0,0,0,.015,4.341v26.04A4.184,4.184,0,0,0,1.286,33.45a4.177,4.177,0,0,0,3.069,1.271H30.4a4.341,4.341,0,0,0,4.34-4.34V4.34a4.184,4.184,0,0,0-1.271-3.069A4.177,4.177,0,0,0,30.4,0Zm0,26.041a4.341,4.341,0,0,1-4.34,4.34H8.695a4.184,4.184,0,0,1-3.069-1.271,4.177,4.177,0,0,1-1.271-3.069V8.682A4.184,4.184,0,0,1,5.626,5.613,4.177,4.177,0,0,1,8.695,4.341h17.36a4.184,4.184,0,0,1,3.069,1.271A4.177,4.177,0,0,1,30.4,8.682Zm-3.764-5.783L24.6,22.293l-6.375-6.375a2.476,2.476,0,0,0-.373-.543,2.088,2.088,0,0,0-2.95,0l-1.865,1.865-2.984-2.95a2.088,2.088,0,0,0-2.95,0,2.088,2.088,0,0,0,0,2.95l4.137,4.137a2.185,2.185,0,0,1,.237.373,2.088,2.088,0,0,0,2.95,0l1.831-1.865,5.357,5.357L19.545,27.31v.2q0,.475.017.712a.7.7,0,0,0,.764.645h6.307a1.545,1.545,0,0,0,1.136-.458,1.5,1.5,0,0,0,.458-1.1V21.039a.7.7,0,0,0-.645-.764q-.237-.016-.712-.017h-.237Z" transform="translate(-14971.3 9858.268)" fill="#fff"/>
+  </g>
+</svg>

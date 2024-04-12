@@ -61,4 +61,11 @@
             return route + base.ToString();
         }
     }
+    public class MenuCategoryModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Image { get; set; }
+        public ICollection<MenuProductModel> Products { get; set; }
+    }
 }

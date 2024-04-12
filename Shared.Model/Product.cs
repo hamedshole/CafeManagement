@@ -23,7 +23,7 @@
         public string? Description { get; set; }
         public bool IsNew { get; set; }
         public bool IsActive { get; set; }
-        public ICollection<AdditiveSelectModel> Additives{ get; set; }
+        public ICollection<AdditiveSelectModel> Additives { get; set; }
         public ICollection<MaterialSelectModel> Materials { get; set; }
     }
     public class ProductAdditiveModel
@@ -114,8 +114,8 @@
         public int ProductId { get; set; }
         public int Order { get; set; }
     }
-   
-    public class ListProductParameter:PagingParameter
+
+    public class ListProductParameter : PagingParameter
     {
         public int? CategoryId { get; set; }
         public string? Title { get; set; }
@@ -127,11 +127,11 @@
     {
         public UpdateProductPriceParameter()
         {
-            
+
         }
         private int Id { get; }
         public long Price { get; set; }
-        public UpdateProductPriceParameter(int id,long price)
+        public UpdateProductPriceParameter(int id, long price)
         {
             Id = id;
             Price = price;
@@ -141,6 +141,15 @@
             return Id;
         }
     }
-  
+    public class MenuProductModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool IsNew { get; set; }
+        public string Image { get; set; }
+        public string? Description { get; set; }
+        public long Price { get; set; }
+        public ICollection<MenuAdditiveModel>? Additives { get; set; }
+    }
 
 }

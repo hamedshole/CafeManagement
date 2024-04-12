@@ -1,0 +1,81 @@
+﻿@page "/menu"
+@using Shared.RestClient.Interfaces
+@using WebApp.Components.Layout
+@layout MenuLayout
+@rendermode InteractiveServer
+@inject IJSRuntime _js
+@inject IRestUnit _client
+<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <div class="sticky">
+        <div dir="rtl" class="swiper-container" id="scroll-tags">
+            <ul class="swiper-wrapper">
+                @{
+                    int i=0;
+                @foreach (var item in _menuCategories)
+                {
+                   
+                    <a alt="@item.Id" id=@("header"+item.Id) class="@GetActiveClass(i)" @onclick="@(()=>GotoSection("cat"+item.Id,"header"+item.Id))" >
+                        <img src="data:image/png;base64,@item.Image">
+                        <p>@item.Title</p>
+                    </a>
+                    i++;
+                }
+                }
+            </ul>
+        </div>
+    </div>
+    <div id="root">
+        @foreach (var category in _menuCategories)
+        {
+            <section class="cafelist Class1" id="@("cat"+category.Id)">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="title">
+                                <h1>@category.Title</h1>
+                            </div>
+                            @foreach (var product in category.Products)
+                            {
+
+                                <div class="product " @onclick=@(()=>ShowProduct(product.Id))>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="img-box">
+                                                <img data-src="data:image/png;base64,@product.Image" src="data:image/png;base64,@product.Image" class="animated fadeIn">
+                                            </div>
+                                            <h2>@product.Title</h2>
+                                            <p>@product.Description</p>
+                                            <div class="price"><span>هزار</span><span>تومان</span><p>@product.Price.ToString("#,#").Split(',')[0]</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        }
+       
+    </div>
+    <div class="is-loading" id="modalContainer">
+        <div id="modal">
+            <div id="body_modal_product">
+                <button id="closeModalBtn"></button>
+                <div id="modal-img" class="modal-product-img"></div>
+                <span id="modal-time" class="time"></span>
+                <p id="modal-name" class="product-name"></p>
+                <div id="modal-price" class="price"></div>
+                <p class="product-description"><span>محتویات :</span><b id="modal-description"></b></p>
+            </div>
+            <div id="main_modal_product">
+                <div id="modal-addons"></div>
+            </div>
+            <!-- <div class="add-cart-box">
+              <button class="add-cart" onclick="AddCart()"><i></i>افزودن به سبد خرید</button>
+            </div> -->
+        </div>
+    </div>
+</div>

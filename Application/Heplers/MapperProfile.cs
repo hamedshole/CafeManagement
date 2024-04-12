@@ -71,6 +71,13 @@ namespace Application.Heplers
                 .ForMember(x => x.Start, opt => opt.MapFrom(x => x.StartTime))
                 .ForMember(x => x.End, opt => opt.MapFrom(x => x.EndTime));
 
+            CreateMap<ProductCategoryEntity, MenuCategoryModel>();
+            CreateMap<ProductEntity,MenuProductModel>()
+                .ForMember(x=>x.Price,opt=>opt.MapFrom(x=>x.Price.Value));
+            CreateMap<ProductAdditiveEntity, MenuAdditiveModel>()
+                .ForMember(x=>x.Title,opt=>opt.MapFrom(x=>x.Additive.Title))
+                .ForMember(x=>x.Amount,opt=>opt.MapFrom(x=>x.Additive.Amount.ToString()));
+
         }
 
 

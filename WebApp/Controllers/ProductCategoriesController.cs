@@ -98,5 +98,10 @@ namespace ApiServer.Controllers
                 throw;
             }
         }
+        [HttpGet("menu")]
+        public async Task<IActionResult> GetMenu()
+        {
+           return Ok(await _service.GetMenu());
+        }
     }
 }

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="32" viewBox="0 0 48 32">
+  <g id="Table" transform="translate(0 -8)">
+    <path id="Path_15" data-name="Path 15" d="M46,8H2a2,2,0,0,0-2,2v3a2,2,0,0,0,2,2H3V38a2,2,0,0,0,2,2H6.1a2,2,0,0,0,1.989-1.779L9.9,22H38.1l1.8,16.22a2,2,0,0,0,2,1.78H43a2,2,0,0,0,2-2V15h1a2,2,0,0,0,2-2V10A2,2,0,0,0,46,8ZM43,38H41.9L40,20.89A1,1,0,0,0,39,20H9a1,1,0,0,0-.994.89L6.1,38H5V15H43ZM2,13V10H46v3Z" fill="#ffb11d"/>
+  </g>
+</svg>
